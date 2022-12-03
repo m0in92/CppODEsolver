@@ -15,6 +15,8 @@ int main() {
     Eigen::ArrayXd res_array = rk4_vec(x_array, y_init, step_size, func);
     std::cout << res_array << std::endl;
 
+    saveArray("results.csv", res_array);
+
     return 0;
 }
 

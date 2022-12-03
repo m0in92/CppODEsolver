@@ -1,6 +1,10 @@
 //
 // Created by Moin on 12/2/2022.
 //
+#include <iostream>
+#include <fstream>
+
+//#include "lib/Eigen/Dense"
 #include "odesolvers.h"
 
 /*
@@ -38,4 +42,12 @@ Eigen::ArrayXd rk4_vec(Eigen::ArrayXd x_array, double y_init, double step_size, 
         res[i] = rk4(x_array[i-1], res[i-1], step_size, func);
     }
     return res;
+}
+
+void saveArray(std::string fileName, Eigen::ArrayXd array) {
+//    const static Eigen::IOFormat CSVFormat(Eigen::FullPrecision, Eigen::DontAlignCols, ", ", "\n");
+    std::ofstream file;
+    file.open(fileName, std::ios::out | std::ios::app);
+    file << array;
+    file.close();
 }
