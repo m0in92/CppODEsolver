@@ -2,7 +2,11 @@
 #include "odesolvers.h"
 #include <cmath>
 #include "lib/Eigen/Dense"
+#include "root_finder.h"
+//#include <boost.math>
 
+
+double func_root(double);
 double func(double x, double y);
 double x_prev=0, y_init = 2, step_size = 1;
 
@@ -17,7 +21,15 @@ int main() {
 
     saveArray("results.csv", res_array);
 
+    double root = Brent(3,0,func_root,1e-5);
+
+    std::cout << root << std::endl;
+
     return 0;
+}
+
+double func_root(double x){
+    return (x-1) * (1 + std::pow((x-1),2));
 }
 
 double func(double x, double y){
