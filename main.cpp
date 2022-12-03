@@ -3,8 +3,6 @@
 #include <cmath>
 #include "lib/Eigen/Dense"
 #include "root_finder.h"
-//#include <boost.math>
-
 
 double func_root(double);
 double func(double x, double y);
@@ -12,17 +10,17 @@ double x_prev=0, y_init = 2, step_size = 1;
 
 // Example usage below:
 int main() {
+    //Usage of the odesolver
     double ynew = rk4(x_prev, y_init, step_size, func); //single data-point
     std::cout << ynew << std::endl;
 
     Eigen::ArrayXd x_array = Eigen::ArrayXd::LinSpaced(5, 0, 4); // an array of data-points
     Eigen::ArrayXd res_array = rk4_vec(x_array, y_init, step_size, func);
     std::cout << res_array << std::endl;
-
     saveArray("results.csv", res_array);
 
-    double root = Brent(3,0,func_root,1e-5);
-
+    // Usage of the root finder library
+    double root = Brent(func_root, 3.0, 0.0, 1e-5, 90);
     std::cout << root << std::endl;
 
     return 0;

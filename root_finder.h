@@ -5,7 +5,6 @@
 #ifndef ODE_SOLVERS_ROOT_FINDER_H
 #define ODE_SOLVERS_ROOT_FINDER_H
 
-int sign(double x);
-double Brent(double a, double b, double (*func)(double), double tol);
+double Brent(double (*f)(double), double lower_bound, double upper_bound, double TOL, double MAX_ITER);
 
 #endif //ODE_SOLVERS_ROOT_FINDER_H
